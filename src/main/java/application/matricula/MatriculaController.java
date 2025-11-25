@@ -17,20 +17,20 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/matriculas")
-@Tag(name = "Matrículas", description = "Operações relacionadas a matrículas")
+@Tag(name = "Matrículas", description = "Operações de matrículas")
 public class MatriculaController {
     @Autowired
     private MatriculaService matriculaService;
 
     @GetMapping
-    @Operation(summary = "Listar matrículas", description = "Retorna a lista de todas as matrículas")
+    @Operation(summary = "Listar matrículas", description = "Retorna a lista de matrículas")
     @ApiResponse(responseCode = "200", description = "Lista de matrículas retornada com sucesso")
     public Iterable<MatriculaDTO> getAll() {
         return matriculaService.findAll(); 
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Obter matrícula por ID", description = "Retorna os dados de uma matrícula a partir do seu identificador")
+    @Operation(summary = "Obter matrícula por ID", description = "Retorna uma matrícula a partir do seu ID")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Matrícula encontrada"),
         @ApiResponse(responseCode = "404", description = "Matrícula não encontrada")
@@ -40,28 +40,28 @@ public class MatriculaController {
     }
 
     @GetMapping("/aluno/{id}")
-    @Operation(summary = "Listar matrículas por aluno", description = "Retorna matrículas associadas a um aluno")
+    @Operation(summary = "Listar matrículas por aluno", description = "Retorna matrículas de um aluno")
     @ApiResponse(responseCode = "200", description = "Matrículas do aluno retornadas com sucesso")
     public Iterable<MatriculaDTO> getByAlunoId(@Parameter(description = "ID do aluno", required = true) @PathVariable long id) {
         return matriculaService.findByAlunoId(id);
     }
 
     @GetMapping("/curso/{id}")
-    @Operation(summary = "Listar matrículas por curso", description = "Retorna matrículas associadas a um curso")
+    @Operation(summary = "Listar matrículas por curso", description = "Retorna matrículas de um curso")
     @ApiResponse(responseCode = "200", description = "Matrículas do curso retornadas com sucesso")
     public Iterable<MatriculaDTO> getByCursoId(@Parameter(description = "ID do curso", required = true) @PathVariable long id) {
         return matriculaService.findByCursoId(id);
     }
 
     @PostMapping
-    @Operation(summary = "Criar matrícula", description = "Cria uma nova matrícula com os dados fornecidos")
+    @Operation(summary = "Criar matrícula", description = "Cria uma nova matrícula")
     @ApiResponse(responseCode = "201", description = "Matrícula criada com sucesso")
     public MatriculaDTO create(@RequestBody MatriculaInsertDTO dados) {
         return matriculaService.create(dados);
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Atualizar matrícula", description = "Atualiza os dados da matrícula identificada pelo ID")
+    @Operation(summary = "Atualizar matrícula", description = "Atualiza a matrícula pelo ID")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Matrícula atualizada com sucesso"),
         @ApiResponse(responseCode = "404", description = "Matrícula não encontrada")
@@ -71,7 +71,7 @@ public class MatriculaController {
     }
 
     @DeleteMapping("/{id}")
-    @Operation(summary = "Remover matrícula", description = "Remove a matrícula identificada pelo ID")
+    @Operation(summary = "Remover matrícula", description = "Remove a matrícula pelo ID")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Matrícula removida com sucesso"),
         @ApiResponse(responseCode = "404", description = "Matrícula não encontrada")

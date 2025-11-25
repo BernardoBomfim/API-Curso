@@ -28,7 +28,7 @@ public class Aluno {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @Column(name = "data_matricula", nullable = false)
+    @Column(name = "dataMatricula", nullable = false)
     private LocalDate dataMatricula; 
 
     public Aluno(AlunoDTO alunodto) {

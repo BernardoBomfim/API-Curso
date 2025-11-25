@@ -17,21 +17,21 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/alunos")
-@Tag(name = "Alunos", description = "Operações relacionadas a alunos")
+@Tag(name = "Alunos", description = "Operações de alunos")
 public class AlunoController {
     
     @Autowired
     private AlunoService alunoService;
     
     @GetMapping
-    @Operation(summary = "Listar alunos", description = "Retorna a lista de todos os alunos")
-    @ApiResponse(responseCode = "200", description = "Lista de alunos retornada com sucesso")
+    @Operation(summary = "Listar alunos", description = "Retorna a lista alunos")
+    @ApiResponse(responseCode = "200", description = "Lista alunos retornada com sucesso")
     public Iterable<AlunoDTO> getAll() {
         return alunoService.findAll();
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Obter aluno por ID", description = "Retorna os dados de um aluno a partir do seu identificador")
+    @Operation(summary = "Obter aluno por ID", description = "Retorna um aluno a partir do ID fornecido")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Aluno encontrado"),
         @ApiResponse(responseCode = "404", description = "Aluno não encontrado")
@@ -41,14 +41,14 @@ public class AlunoController {
     }
 
     @PostMapping()
-    @Operation(summary = "Criar aluno", description = "Cria um novo aluno com os dados fornecidos")
+    @Operation(summary = "Criar aluno", description = "Cria um novo aluno")
     @ApiResponse(responseCode = "201", description = "Aluno criado com sucesso")
     public AlunoDTO create(@RequestBody AlunoInsertDTO dados) {
         return alunoService.create(dados);
     }
 
     @PutMapping("/{id}")
-    @Operation(summary = "Atualizar aluno", description = "Atualiza os dados do aluno identificado pelo ID")
+    @Operation(summary = "Atualizar aluno", description = "Atualiza os dados do aluno a partir do ID")
     @ApiResponses({
         @ApiResponse(responseCode = "200", description = "Aluno atualizado com sucesso"),
         @ApiResponse(responseCode = "404", description = "Aluno não encontrado")
@@ -58,7 +58,7 @@ public class AlunoController {
     }
 
     @DeleteMapping("{id}")
-    @Operation(summary = "Remover aluno", description = "Remove o aluno identificado pelo ID")
+    @Operation(summary = "Remover aluno", description = "Remove o aluno a partir do ID")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Aluno removido com sucesso"),
         @ApiResponse(responseCode = "404", description = "Aluno não encontrado")
